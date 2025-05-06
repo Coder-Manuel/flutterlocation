@@ -317,7 +317,8 @@
   }
 
   // Only use the guard if precise location is enabled
-  if (!isReducedAccuracy && self.waitNextLocation > 0) {
+  BOOL shouldSkipUpdate = (!isReducedAccuracy && self.waitNextLocation > 0 && !self.locationWanted);
+  if (shouldSkipUpdate) {
     self.waitNextLocation -= 1;
     return;
   }
